@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Menu",
+            "request": "launch",
+            "mainClass": "vista.Menu",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Launch Proyecto_maven_administrador",
             "request": "launch",
             "mainClass": "co.edu.unicauca.distribuidos.proyecto_maven_administrador.Proyecto_maven_administrador",
