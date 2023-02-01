@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.DTO.ProductoDTO;
-import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.DTO.auxiProductoDTO;
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.services.IProductoService;
 
 @RestController
