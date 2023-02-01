@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Proyecto_maven_administrador",
+            "request": "launch",
+            "mainClass": "co.edu.unicauca.distribuidos.proyecto_maven_administrador.Proyecto_maven_administrador",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApiRestInicioSesionApplication<proyecto_api_rest_inicio_sesion>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.ProyectoApiRestInicioSesionApplication",
+            "projectName": "proyecto_api_rest_inicio_sesion",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
