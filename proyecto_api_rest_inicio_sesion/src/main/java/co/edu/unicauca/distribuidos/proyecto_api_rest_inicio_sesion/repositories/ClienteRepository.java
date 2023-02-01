@@ -27,7 +27,7 @@ public class ClienteRepository {
 
    public ClienteEntity findClientBySesion(String login,String contrasenia)
    {
-	   System.out.println("Invocando a consultar un cliente");
+	   System.out.println("Invocando a consultar un cliente, para Inicio de Sesión");
        ClienteEntity objCliente=null;
 		
 		for (ClienteEntity cliente : listaDeClientes) {

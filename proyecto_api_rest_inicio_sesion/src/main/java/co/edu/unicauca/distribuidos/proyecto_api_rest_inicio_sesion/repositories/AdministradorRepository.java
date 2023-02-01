@@ -26,7 +26,7 @@ public class AdministradorRepository {
 
    public AdministradorEntity findAdminBySesion(String login,String contrasenia)
    {
-	   System.out.println("Invocando a consultar un administrador");
+	   System.out.println("Invocando a consultar un administrador, para Inicio de Sesión");
        AdministradorEntity objAdministrador=null;
 		
 		for (AdministradorEntity administrador : listaDeAdministradores) {
