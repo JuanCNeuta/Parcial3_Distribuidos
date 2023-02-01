@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.models.ProductoEntity;
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.repositories.ProductoRepository;
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.DTO.ProductoDTO;
-import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.DTO.auxiProductoDTO;
 
 @Service
 public class ProductoServiceImp implements IProductoService{
@@ -64,13 +63,6 @@ public class ProductoServiceImp implements IProductoService{
 		ProductoEntity ProductoEntityActualizado= this.servicioAccesoBaseDatos.update(id, ProductoEntity);
 		ProductoDTO ProductoDTO=this.modelMapper.map(ProductoEntityActualizado, ProductoDTO.class);
 		return ProductoDTO;	
-	}
-	@Override
-	public ProductoDTO updateOfert(Integer id, auxiProductoDTO Auxproducto) {	
-		ProductoEntity auxProductoEntity=this.modelMapper.map(Auxproducto, ProductoEntity.class);	
-		ProductoEntity auxProductoEntityActualizado= this.servicioAccesoBaseDatos.update(id, auxProductoEntity);
-		ProductoDTO auxProductoDTO=this.modelMapper.map(auxProductoEntityActualizado, ProductoDTO.class);
-		return auxProductoDTO;	
 	}
 
 	@Override
