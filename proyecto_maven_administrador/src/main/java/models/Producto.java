@@ -6,12 +6,13 @@ package models;
 
 /**
  *
- * @author JuanC
+ * @author William
  */
 public class Producto {
-    private Integer codigo;		
+
+    private Integer codigo;
     private String nombre;
-    private String estado;	
+    private String estado;
     private Number valor;
 
     public Producto() {
@@ -55,5 +56,6 @@ public class Producto {
     public void setValor(Number valor) {
         this.valor = valor;
     }
+    
     
 }

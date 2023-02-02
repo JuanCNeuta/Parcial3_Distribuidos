@@ -4,6 +4,7 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
 import models.Administrador;
 
 /**
@@ -30,147 +31,130 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jPanelPrincipal = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
-        jbRegistrarProducto = new javax.swing.JButton();
-        jbListarProductos = new javax.swing.JButton();
-        jbSubasta = new javax.swing.JButton();
-        jdpPrincipal = new javax.swing.JDesktopPane();
-
-        jMenu1.setText("jMenu1");
-
-        jMenu2.setText("jMenu2");
+        dpEscritorio = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        subMenuCerrarPrograma = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        subMenuCrearProducto = new javax.swing.JMenuItem();
+        subMenuListarProducto = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        subMenuCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Bienvenido(a):");
 
-        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblUsuario.setText("Sin usuario");
 
-        jbRegistrarProducto.setText("Registrar Productos");
-        jbRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout dpEscritorioLayout = new javax.swing.GroupLayout(dpEscritorio);
+        dpEscritorio.setLayout(dpEscritorioLayout);
+        dpEscritorioLayout.setHorizontalGroup(
+            dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 665, Short.MAX_VALUE)
+        );
+        dpEscritorioLayout.setVerticalGroup(
+            dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
+
+        jMenu1.setText("Inicio");
+
+        subMenuCerrarPrograma.setText("Cerrar Programa");
+        subMenuCerrarPrograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRegistrarProductoActionPerformed(evt);
+                subMenuCerrarProgramaActionPerformed(evt);
             }
         });
+        jMenu1.add(subMenuCerrarPrograma);
 
-        jbListarProductos.setText("Listar Productos");
-        jbListarProductos.setActionCommand("Listar Productos");
-        jbListarProductos.setAutoscrolls(true);
-        jbListarProductos.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Producto");
+
+        subMenuCrearProducto.setText("Crear");
+        subMenuCrearProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbListarProductosActionPerformed(evt);
+                subMenuCrearProductoActionPerformed(evt);
             }
         });
+        jMenu2.add(subMenuCrearProducto);
 
-        jbSubasta.setText("Abrir o Cerrar Subasta");
-        jbSubasta.setAutoscrolls(true);
-        jbSubasta.addActionListener(new java.awt.event.ActionListener() {
+        subMenuListarProducto.setText("Listar");
+        jMenu2.add(subMenuListarProducto);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Subasta");
+
+        jMenuItem3.setText("Crear");
+        jMenu3.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Sesión");
+
+        subMenuCerrarSesion.setText("Cerrar Sesión");
+        subMenuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSubastaActionPerformed(evt);
+                subMenuCerrarSesionActionPerformed(evt);
             }
         });
+        jMenu4.add(subMenuCerrarSesion);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbRegistrarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbListarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lblUsuario)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsuario)
-                .addGap(40, 40, 40)
-                .addComponent(jbRegistrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbListarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
-        );
+        jMenuBar1.add(jMenu4);
 
-        javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
-        jdpPrincipal.setLayout(jdpPrincipalLayout);
-        jdpPrincipalLayout.setHorizontalGroup(
-            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
-        );
-        jdpPrincipalLayout.setVerticalGroup(
-            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
-        jPanelPrincipal.setLayout(jPanelPrincipalLayout);
-        jPanelPrincipalLayout.setHorizontalGroup(
-            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdpPrincipal)
-                .addContainerGap())
-        );
-        jPanelPrincipalLayout.setVerticalGroup(
-            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jdpPrincipal))
-                .addContainerGap())
-        );
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dpEscritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(lblUsuario)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(dpEscritorio)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblUsuario))
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarProductoActionPerformed
-        FrmRegistrarProducto verRegistrarProducto=new FrmRegistrarProducto();
-        jdpPrincipal.add(verRegistrarProducto);
-        verRegistrarProducto.show();
-    }//GEN-LAST:event_jbRegistrarProductoActionPerformed
+    private void subMenuCerrarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCerrarProgramaActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_subMenuCerrarProgramaActionPerformed
 
-    private void jbListarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarProductosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbListarProductosActionPerformed
+    private void subMenuCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCrearProductoActionPerformed
+        FrmRegistrarProducto frmRegistrarProducto = new FrmRegistrarProducto();
+        dpEscritorio.add(frmRegistrarProducto);
+        frmRegistrarProducto.show();
+        //        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_subMenuCrearProductoActionPerformed
 
-    private void jbSubastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubastaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbSubastaActionPerformed
+    private void subMenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCerrarSesionActionPerformed
+        JOptionPane.showMessageDialog(this, "Haz Cerrado Sesión, Vuelve Pronto...");
+        this.dispose();
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
+    }//GEN-LAST:event_subMenuCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,15 +192,18 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane dpEscritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelPrincipal;
-    private javax.swing.JButton jbListarProductos;
-    private javax.swing.JButton jbRegistrarProducto;
-    private javax.swing.JButton jbSubasta;
-    private javax.swing.JDesktopPane jdpPrincipal;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JMenuItem subMenuCerrarPrograma;
+    private javax.swing.JMenuItem subMenuCerrarSesion;
+    private javax.swing.JMenuItem subMenuCrearProducto;
+    private javax.swing.JMenuItem subMenuListarProducto;
     // End of variables declaration//GEN-END:variables
 }

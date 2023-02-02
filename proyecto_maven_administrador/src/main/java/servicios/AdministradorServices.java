@@ -68,19 +68,5 @@ public class AdministradorServices {
 
         return objAdministrador;
     }
-    
-    public Administrador registrarProducto(Administrador objAdministradorRegistar) {
-        Administrador objAdministrador = null;
-
-        WebTarget target = this.objClientePeticiones.target(this.endPoint);
-
-        Entity<Administrador> data = Entity.entity(objAdministradorRegistar, MediaType.APPLICATION_JSON_TYPE);
-
-        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
-
-        objAdministrador = objPeticion.post(data, Administrador.class);
-
-        return objAdministrador;
-    }
 
 }

@@ -17,8 +17,8 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
     /**
      * Creates new form FrmRegistrarAdministrador
      */
-    AdministradorServices objAdministradorServices= new AdministradorServices();
-    
+    AdministradorServices objAdministradorServices = new AdministradorServices();
+
     public FrmRegistrarAdministrador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -133,22 +133,23 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if(!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty()&&
-                !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()&&
-                !txtRepetirContrasenia.getText().isEmpty() && txtRepetirContrasenia.getText().equals(txtContrasenia.getText())){
-            
+        if (!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty()
+                && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()
+                && !txtRepetirContrasenia.getText().isEmpty() && txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
+
             Administrador administrador = new Administrador(txtNombres.getText(), txtApellidos.getText(),
                     txtUsuario.getText(), txtContrasenia.getText());
-            
-            Administrador objAdministradorRegistrado= objAdministradorServices.registrarAdministrador(administrador);
-            
-            if(objAdministradorRegistrado!=null){
+
+            Administrador objAdministradorRegistrado = objAdministradorServices.registrarAdministrador(administrador);
+
+            if (objAdministradorRegistrado != null) {
                 JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión");
-            }else{
+                limpiarCamposFormulario();
+            } else {
                 JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "Complete los campos para poder hacer el registro");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -195,6 +196,13 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
         });
     }
 
+    public void limpiarCamposFormulario() {
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtUsuario.setText("");
+        txtContrasenia.setText("");
+        txtRepetirContrasenia.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
