@@ -9,7 +9,7 @@ public class ProductoDTO {
     private Integer codigo;		
 	private String nombre;	
 	private String estado;	
-	private Number valor;
+	private int valor;
 
     public ProductoDTO()
     {

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApiRestInicioSesionApplication<proyecto_api_rest_inicio_sesion>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.ProyectoApiRestInicioSesionApplication",
+            "projectName": "proyecto_api_rest_inicio_sesion",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

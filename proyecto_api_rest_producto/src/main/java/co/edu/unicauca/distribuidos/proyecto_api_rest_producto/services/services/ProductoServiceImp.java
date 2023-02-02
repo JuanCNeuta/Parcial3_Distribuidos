@@ -50,6 +50,13 @@ public class ProductoServiceImp implements IProductoService{
 	}
 
 	@Override
+	public ProductoDTO findByName(String nombre) {		
+		ProductoEntity objProductoEntity= this.servicioAccesoBaseDatos.findByName(nombre);
+		ProductoDTO ProductoDTO=this.modelMapper.map(objProductoEntity, ProductoDTO.class);
+		return ProductoDTO;
+	}
+
+	@Override
 	public ProductoDTO save(ProductoDTO producto) {
 		ProductoEntity ProductoEntity=this.modelMapper.map(producto, ProductoEntity.class);
 		ProductoEntity objProductoEntity= this.servicioAccesoBaseDatos.save(ProductoEntity);

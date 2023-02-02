@@ -60,10 +60,10 @@ public class ProductoRestController {
 	}
 
 	//Servicio 7
-	@GetMapping("/cliente/productos/{codigo}")
-	public ProductoDTO show(@PathVariable Integer codigo) {
+	@GetMapping("/cliente/productos/{nombre}")
+	public ProductoDTO show(@PathVariable String nombre) {
 		ProductoDTO objProducto = null;
-		objProducto = productoService.findById(codigo);
+		objProducto = productoService.findByName(nombre);
 		return objProducto;
 	}
 
@@ -77,7 +77,7 @@ public class ProductoRestController {
 
 	//Servicio 9
 	@PutMapping("/cliente/hacerOferta/{valor}")
-	public ProductoDTO ofrecer(@PathVariable Number valor) {
+	public ProductoDTO ofrecer(@PathVariable int valor) {
 		ProductoDTO ProductoActual = null;
 		ProductoDTO objProducto = null;
 		ProductoActual = productoService.findEnSubasta();

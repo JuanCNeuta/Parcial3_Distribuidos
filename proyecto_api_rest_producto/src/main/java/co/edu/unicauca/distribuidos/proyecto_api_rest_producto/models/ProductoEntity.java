@@ -9,7 +9,7 @@ public class ProductoEntity {
     private Integer codigo;		
 	private String nombre;	
 	private String estado;	
-	private Number valor;
+	private int valor;
 
     public ProductoEntity()
     {

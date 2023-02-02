@@ -67,6 +67,22 @@ public class ProductoRepository {
 		
 		return objProducto;
 	}
+
+	public ProductoEntity findByName(String nombre)
+   {
+	   System.out.println("Invocando a consultar un Producto");
+       ProductoEntity objProducto=null;
+		
+		for (ProductoEntity producto : listaDeProductos) {
+			if(producto.getNombre().equals(nombre))
+			{
+				objProducto=producto;
+				break;
+			}
+		}
+		
+		return objProducto;
+	}
 	
 	public ProductoEntity save(ProductoEntity producto)	
 	{
