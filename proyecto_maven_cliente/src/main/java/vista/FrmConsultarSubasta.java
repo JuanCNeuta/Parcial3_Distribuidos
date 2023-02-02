@@ -25,15 +25,45 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
         objProducto = objClienteServices.consultarProductoEnSubasta();
 
         if (objProducto != null) {
-            JOptionPane.showMessageDialog(this, "Producto " + objProducto.getNombre() + " Encontrado");
+            JOptionPane.showMessageDialog(null, "Producto " + objProducto.getNombre() + " Encontrado");
             txtCodigo.setText(String.valueOf(objProducto.getCodigo()));
             txtNombre.setText(objProducto.getNombre());
             txtEstado.setText(objProducto.getEstado());
             txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
 
         } else {
-            JOptionPane.showMessageDialog(this, "NO HAY PRODUCTO EN SUBASTA");
+            JOptionPane.showMessageDialog(null, "NO HAY PRODUCTO EN SUBASTA");
         }
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                // Esto se ejecuta en segundo plano una única vez
+                while (true) {
+                    // Pero usamos un truco y hacemos un ciclo infinito
+                    try {
+                        // En él, hacemos que el hilo duerma
+                        Thread.sleep(4000);
+                        // Y después realizamos las operaciones
+                        Producto objProducto = new Producto();
+                        objProducto = objClienteServices.consultarProductoEnSubasta();
+                        txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
+                        
+                        System.out.println("Me imprimo cada 4 segundo");
+
+                        // Así, se da la impresión de que se ejecuta cada cierto tiempo
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        // Creamos un hilo y le pasamos el runnable
+        Thread hilo = new Thread(runnable);
+        hilo.start();
+
+        // Y aquí podemos hacer cualquier cosa, en el hilo principal del programa
+        System.out.println("Yo imprimo en el hilo principal");
 
     }
 
