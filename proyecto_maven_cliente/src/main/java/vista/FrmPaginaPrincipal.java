@@ -35,6 +35,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         jbListarUnProducto = new javax.swing.JButton();
+        jbConsultarSubasta = new javax.swing.JButton();
         jdpPrincipal = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +53,13 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbConsultarSubasta.setText("Consultar Producto \nen subasta");
+        jbConsultarSubasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConsultarSubastaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -65,7 +73,9 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
                         .addComponent(lblUsuario)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jbListarUnProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbListarUnProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -77,14 +87,16 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblUsuario)
                 .addGap(40, 40, 40)
                 .addComponent(jbListarUnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
         jdpPrincipalLayout.setHorizontalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +144,12 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         verConsultarProducto.show();
     }//GEN-LAST:event_jbListarUnProductoActionPerformed
 
+    private void jbConsultarSubastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarSubastaActionPerformed
+        FrmConsultarSubasta verConsultarSubasta=new FrmConsultarSubasta();
+        jdpPrincipal.add(verConsultarSubasta);
+        verConsultarSubasta.show();
+    }//GEN-LAST:event_jbConsultarSubastaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -170,6 +188,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbConsultarSubasta;
     private javax.swing.JButton jbListarUnProducto;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JPanel jpPrincipal;

@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 import models.Cliente;
+import models.Producto;
 
 /**
  *
@@ -67,6 +68,30 @@ public class ClienteServices {
         objCliente = objPeticion.post(data, Cliente.class);
 
         return objCliente;
+    }
+
+    public Producto consultarProducto(String nombre) {
+        Producto objProducto = null;
+
+        WebTarget target = this.objClientePeticiones.target("http://localhost:5020/api/cliente/productos" + "/" + nombre);
+        
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        objProducto = objPeticion.get(Producto.class);
+
+        return objProducto;
+    }
+    
+    public Producto consultarProductoEnSubasta(){
+         Producto objProducto = null;
+
+        WebTarget target = this.objClientePeticiones.target("http://localhost:5020/api/cliente/productoEnSubasta");
+        
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        objProducto = objPeticion.get(Producto.class);
+
+        return objProducto;
     }
 
 }
