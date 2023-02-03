@@ -36,6 +36,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         jbListarUnProducto = new javax.swing.JButton();
         jbConsultarSubasta = new javax.swing.JButton();
+        jbListarTodosProductos = new javax.swing.JButton();
         jdpPrincipal = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,6 +61,13 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbListarTodosProductos.setText("Consultar todos los productos");
+        jbListarTodosProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbListarTodosProductosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,8 +82,9 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbListarUnProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbListarTodosProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -86,10 +95,12 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUsuario)
                 .addGap(40, 40, 40)
-                .addComponent(jbListarUnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbListarTodosProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbListarUnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
@@ -100,7 +111,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 503, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
@@ -139,16 +150,22 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbListarUnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarUnProductoActionPerformed
-        FrmConsultarProducto verConsultarProducto=new FrmConsultarProducto();
+        FrmConsultarProducto verConsultarProducto = new FrmConsultarProducto();
         jdpPrincipal.add(verConsultarProducto);
         verConsultarProducto.show();
     }//GEN-LAST:event_jbListarUnProductoActionPerformed
 
     private void jbConsultarSubastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarSubastaActionPerformed
-        FrmConsultarSubasta verConsultarSubasta=new FrmConsultarSubasta();
+        FrmConsultarSubasta verConsultarSubasta = new FrmConsultarSubasta();
         jdpPrincipal.add(verConsultarSubasta);
         verConsultarSubasta.show();
     }//GEN-LAST:event_jbConsultarSubastaActionPerformed
+
+    private void jbListarTodosProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarTodosProductosActionPerformed
+        FrmListarProductos verListarProductos = new FrmListarProductos();
+        jdpPrincipal.add(verListarProductos);
+        verListarProductos.show();
+    }//GEN-LAST:event_jbListarTodosProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +206,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbConsultarSubasta;
+    private javax.swing.JButton jbListarTodosProductos;
     private javax.swing.JButton jbListarUnProducto;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JPanel jpPrincipal;
