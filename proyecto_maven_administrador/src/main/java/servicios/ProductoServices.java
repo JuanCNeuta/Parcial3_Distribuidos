@@ -4,11 +4,14 @@
  */
 package servicios;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import models.Administrador;
 import models.Producto;
@@ -24,8 +27,22 @@ public class ProductoServices {
     private Client objClientePeticiones;
 
     public ProductoServices() {
-        this.endPoint = "http://localhost:6000/api/administrador/productos";
+        this.endPoint = "http://localhost:5020/api/administrador/productos";
         this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
+    }
+    
+    //Listar Productos Activos
+    public ArrayList<Producto> listarProductos() {
+        ArrayList<Producto> listaProductos = null;
+
+        WebTarget target = this.objClientePeticiones.target(this.endPoint);
+
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
+
+        listaProductos = objPeticion.get(new GenericType<ArrayList<Producto>>() {
+        });
+
+        return listaProductos;
     }
     
     

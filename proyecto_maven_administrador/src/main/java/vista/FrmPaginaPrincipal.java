@@ -20,6 +20,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         lblUsuario.setText(administrador.getLogin());
+        dpEscritorio.removeAll();
     }
 
     /**
@@ -41,7 +42,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         subMenuCrearProducto = new javax.swing.JMenuItem();
         subMenuListarProducto = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        subMenuCrearSubasta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         subMenuCerrarSesion = new javax.swing.JMenuItem();
 
@@ -87,14 +88,24 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         jMenu2.add(subMenuCrearProducto);
 
         subMenuListarProducto.setText("Listar");
+        subMenuListarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuListarProductoActionPerformed(evt);
+            }
+        });
         jMenu2.add(subMenuListarProducto);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Subasta");
 
-        jMenuItem3.setText("Crear");
-        jMenu3.add(jMenuItem3);
+        subMenuCrearSubasta.setText("Crear");
+        subMenuCrearSubasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subMenuCrearSubastaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(subMenuCrearSubasta);
 
         jMenuBar1.add(jMenu3);
 
@@ -156,6 +167,18 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         frmLogin.setVisible(true);
     }//GEN-LAST:event_subMenuCerrarSesionActionPerformed
 
+    private void subMenuListarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuListarProductoActionPerformed
+        FrmListarProductos frmListarProductos = new FrmListarProductos();
+        dpEscritorio.add(frmListarProductos);
+        frmListarProductos.show();
+    }//GEN-LAST:event_subMenuListarProductoActionPerformed
+
+    private void subMenuCrearSubastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCrearSubastaActionPerformed
+        FrmCrearSubasta frmCrearSubasta = new FrmCrearSubasta();
+        dpEscritorio.add(frmCrearSubasta);
+        frmCrearSubasta.show();
+    }//GEN-LAST:event_subMenuCrearSubastaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,11 +222,11 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem subMenuCerrarPrograma;
     private javax.swing.JMenuItem subMenuCerrarSesion;
     private javax.swing.JMenuItem subMenuCrearProducto;
+    private javax.swing.JMenuItem subMenuCrearSubasta;
     private javax.swing.JMenuItem subMenuListarProducto;
     // End of variables declaration//GEN-END:variables
 }
