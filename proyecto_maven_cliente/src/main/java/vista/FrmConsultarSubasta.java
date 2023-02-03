@@ -18,10 +18,11 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
      * Creates new form FrmConsultarSubasta
      */
     ClienteServices objClienteServices = new ClienteServices();
+    Producto objProducto = new Producto();
 
     public FrmConsultarSubasta() {
         initComponents();
-        Producto objProducto = new Producto();
+
         objProducto = objClienteServices.consultarProductoEnSubasta();
 
         if (objProducto != null) {
@@ -39,18 +40,17 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
             public void run() {
                 // Esto se ejecuta en segundo plano una única vez
                 while (true) {
-                    // Pero usamos un truco y hacemos un ciclo infinito
+                    // hacemos un ciclo infinito
                     try {
                         // En él, hacemos que el hilo duerma
                         Thread.sleep(4000);
-                        // Y después realizamos las operaciones
+
                         Producto objProducto = new Producto();
                         objProducto = objClienteServices.consultarProductoEnSubasta();
                         txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
-                        
+
                         System.out.println("Me imprimo cada 4 segundo");
 
-                        // Así, se da la impresión de que se ejecuta cada cierto tiempo
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -87,6 +87,11 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
         txtEstado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jbHacerOferta = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtValorOferta = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -117,6 +122,22 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Se actualiza cada 4 seg");
 
+        jbHacerOferta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbHacerOferta.setText("HACER OFERTA");
+        jbHacerOferta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbHacerOfertaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("Valor de Oferta:");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("SI desea hacer una oferta, dijite el valor a ofertar:");
+
+        jLabel10.setText("Nota:EL valor de la oferta debe ser mayor a la oferta actual");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,27 +145,43 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(tx))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tz, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombre)
-                    .addComponent(txtEstado)
-                    .addComponent(txtCodigo)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)))
+                        .addContainerGap(41, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(tx))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tz, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre)
+                            .addComponent(txtEstado)
+                            .addComponent(txtCodigo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel10)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValorOferta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbHacerOferta)))))
                 .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
@@ -171,24 +208,64 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValorOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jbHacerOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbHacerOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHacerOfertaActionPerformed
+        if (!txtValorOferta.getText().isEmpty()) {
+            int valorOfert = Integer.parseInt(txtValorOferta.getText());
+
+            Producto objProductoNew = new Producto();
+            if (valorOfert > objProducto.getValor()) {
+                objProductoNew = objClienteServices.hacerOferta(valorOfert, objProducto);
+                if (objProductoNew != null) {
+                    JOptionPane.showMessageDialog(this, "OFERTA ACEPTADA");
+                    txtCodigo.setText(String.valueOf(objProductoNew.getCodigo()));
+                    txtNombre.setText(objProductoNew.getNombre());
+                    txtEstado.setText(objProductoNew.getEstado());
+                    txtValor.setText("$ " + String.valueOf(objProductoNew.getValor()));
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "NO SE ENCOTRO el Producto " + txtValorOferta.getText());
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El valor de la oferta es inferior al valor actual");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Complete los campos para poder hacer el registro");
+        }
+    }//GEN-LAST:event_jbHacerOfertaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton jbHacerOferta;
     private javax.swing.JLabel tx;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtValor;
+    private javax.swing.JTextField txtValorOferta;
     private javax.swing.JLabel tz;
     // End of variables declaration//GEN-END:variables
 }

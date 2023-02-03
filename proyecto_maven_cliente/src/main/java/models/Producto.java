@@ -12,12 +12,12 @@ public class Producto {
     private Integer codigo;		
     private String nombre;
     private String estado;	
-    private Number valor;
+    private int valor;
 
     public Producto() {
     }
 
-    public Producto(Integer codigo, String nombre, String estado, Number valor) {
+    public Producto(Integer codigo, String nombre, String estado, int valor) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.estado = estado;
@@ -48,11 +48,11 @@ public class Producto {
         this.estado = estado;
     }
 
-    public Number getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(Number valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
     

@@ -70,6 +70,7 @@ public class FrmConsultarProducto extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Digite el nombre del producto que desea consultar");
 
+        btnConsultar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

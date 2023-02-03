@@ -4,6 +4,7 @@
  */
 package servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -93,5 +94,33 @@ public class ClienteServices {
 
         return objProducto;
     }
+    
+    //Listar Productos Activos
+    public ArrayList<Producto> listarProductos() {
+        ArrayList<Producto> listaProductos = null;
 
+        WebTarget target = this.objClientePeticiones.target("http://localhost:5020/api/cliente/productos");
+
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
+
+        listaProductos = objPeticion.get(new GenericType<ArrayList<Producto>>() {
+        });
+
+        return listaProductos;
+    }
+
+    public Producto hacerOferta(int valorOferta, Producto objProductoAux){
+        
+        Producto objProducto = null;
+
+        WebTarget target = this.objClientePeticiones.target("http://localhost:5020/api/cliente/hacerOferta" + "/" + valorOferta);
+
+        Entity data = Entity.entity(objProductoAux, MediaType.APPLICATION_JSON_TYPE);
+
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        objProducto = objPeticion.put(data, Producto.class);
+
+        return objProducto;
+    }
 }

@@ -54,7 +54,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jbConsultarSubasta.setText("Consultar Producto \nen subasta");
+        jbConsultarSubasta.setText("Consultar y Ofrecer en Subasta");
         jbConsultarSubasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbConsultarSubastaActionPerformed(evt);
@@ -97,9 +97,9 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jbListarTodosProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbListarUnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
