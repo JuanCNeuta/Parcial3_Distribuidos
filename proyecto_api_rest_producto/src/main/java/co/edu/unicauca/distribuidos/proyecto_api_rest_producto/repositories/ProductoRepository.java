@@ -16,8 +16,7 @@ public class ProductoRepository {
 	public ProductoRepository()
 	{
 		this.listaDeProductos= new ArrayList<ProductoEntity>();
-		this.listaDeProductosEnOferta= new ArrayList<ProductoEntity>();
-		cargarProductoes();
+		cargarProductos();
 	}
 	
    public List<ProductoEntity> findAll()
@@ -44,6 +43,7 @@ public class ProductoRepository {
    public List<ProductoEntity> findAllOfert()
    {
 	   System.out.println("Invocando a listar Productos en oferta");
+	   listaDeProductosEnOferta= new ArrayList<ProductoEntity>();
 	   for(ProductoEntity listaDeProduct: listaDeProductos){
 			if(listaDeProduct.getEstado().equals("En oferta")){
 				listaDeProductosEnOferta.add(listaDeProduct);
@@ -131,7 +131,7 @@ public class ProductoRepository {
 		 return bandera;
 	}
 	
-	private void cargarProductoes()
+	private void cargarProductos()
 	{
 		ProductoEntity objProducto1= new ProductoEntity(1, "Cama", "En oferta", 800000);
 		this.listaDeProductos.add(objProducto1);
