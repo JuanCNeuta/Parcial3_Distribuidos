@@ -90,8 +90,13 @@ public class ProductoRestController {
 	}
 
 	
-
-	
+	//Consultar Producto por id
+	@GetMapping("/administrador/productos/{codigo}")
+	public ProductoDTO show(@PathVariable Integer codigo) {
+		ProductoDTO objProducto = null;
+		objProducto = productoService.findById(codigo);
+		return objProducto;
+	}
 
 	
 

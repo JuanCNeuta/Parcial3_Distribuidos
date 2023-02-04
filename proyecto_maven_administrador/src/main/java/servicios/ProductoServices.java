@@ -22,7 +22,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
  * @author William
  */
 public class ProductoServices {
-    
+
     private String endPoint;
     private Client objClientePeticiones;
 
@@ -30,7 +30,7 @@ public class ProductoServices {
         this.endPoint = "http://localhost:5020/api/administrador/productos";
         this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
     }
-    
+
     //Listar Productos Activos
     public ArrayList<Producto> listarProductos() {
         ArrayList<Producto> listaProductos = null;
@@ -44,8 +44,7 @@ public class ProductoServices {
 
         return listaProductos;
     }
-    
-    
+
     //Registrar producto
     public Producto registrarProducto(Producto objProductoRegistar) {
         Producto objProducto = null;
@@ -57,6 +56,34 @@ public class ProductoServices {
         Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
 
         objProducto = objPeticion.post(data, Producto.class);
+
+        return objProducto;
+    }
+
+    //Consultar Producto
+    public Producto consultarProductoId(Integer codigo) {
+        Producto objProducto = null;
+
+        WebTarget target = this.objClientePeticiones.target(this.endPoint + "/" + codigo);
+
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        objProducto = objPeticion.get(Producto.class);
+
+        return objProducto;
+    }
+
+    //Actualizar estado producto
+    public Producto actualizarProductoSubasta(Integer codigo,String estado,Producto objProductoActualizar) {
+        Producto objProducto = null;
+
+        WebTarget target = this.objClientePeticiones.target(this.endPoint + "/" + codigo+ "/" + estado);
+
+        Entity<Producto> data = Entity.entity(objProductoActualizar, MediaType.APPLICATION_JSON_TYPE);
+
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        objProducto = objPeticion.put(data, Producto.class);
 
         return objProducto;
     }
