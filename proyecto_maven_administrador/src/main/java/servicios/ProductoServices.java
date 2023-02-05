@@ -44,6 +44,20 @@ public class ProductoServices {
 
         return listaProductos;
     }
+    
+     //Listar Productos todos
+    public ArrayList<Producto> listarTodosProductos() {
+        ArrayList<Producto> listaProductos = null;
+
+        WebTarget target = this.objClientePeticiones.target("http://localhost:5020/api/cliente/productos");
+
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
+
+        listaProductos = objPeticion.get(new GenericType<ArrayList<Producto>>() {
+        });
+
+        return listaProductos;
+    }
 
     //Registrar producto
     public Producto registrarProducto(Producto objProductoRegistar) {

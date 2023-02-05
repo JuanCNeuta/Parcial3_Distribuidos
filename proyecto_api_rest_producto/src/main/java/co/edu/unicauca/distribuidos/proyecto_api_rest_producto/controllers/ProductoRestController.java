@@ -1,37 +1,21 @@
 package co.edu.unicauca.distribuidos.proyecto_api_rest_producto.controllers;
 
-<<<<<<< HEAD
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> 3fb398a (Actualizacion 9)
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.RequestHeader;
-=======
->>>>>>> 3fb398a (Actualizacion 9)
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.DTO.ProductoDTO;
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.services.services.IProductoService;
-<<<<<<< HEAD
-=======
 import co.edu.unicauca.distribuidos.proyecto_api_rest_producto.exception.RequestException;
->>>>>>> 3fb398a (Actualizacion 9)
 
 @RestController
 @RequestMapping("/api")
@@ -108,9 +92,6 @@ public class ProductoRestController {
 	public ProductoDTO show(@PathVariable Integer codigo) {
 		ProductoDTO objProducto = null;
 		objProducto = productoService.findById(codigo);
-<<<<<<< HEAD
-		return objProducto;
-=======
 		if(objProducto!= null) {
 			return objProducto;
 
@@ -118,7 +99,6 @@ public class ProductoRestController {
 			throw new RequestException("No existe un usuario con dicho codigo");
 		}
 		
->>>>>>> 3fb398a (Actualizacion 9)
 	}
 
 	

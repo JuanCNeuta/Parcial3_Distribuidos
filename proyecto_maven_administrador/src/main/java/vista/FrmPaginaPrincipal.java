@@ -87,7 +87,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(subMenuCrearProducto);
 
-        subMenuListarProducto.setText("Listar");
+        subMenuListarProducto.setText("Listar En oferta");
         subMenuListarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subMenuListarProductoActionPerformed(evt);
@@ -99,7 +99,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Subasta");
 
-        subMenuCrearSubasta.setText("Crear");
+        subMenuCrearSubasta.setText("Crear o Cerrar");
         subMenuCrearSubasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subMenuCrearSubastaActionPerformed(evt);

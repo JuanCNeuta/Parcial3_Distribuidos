@@ -15,10 +15,4 @@ public class ProductoDTO {
     {
 
     } 
-<<<<<<< HEAD
-=======
-
-    
-
->>>>>>> 3fb398a (Actualizacion 9)
 }
