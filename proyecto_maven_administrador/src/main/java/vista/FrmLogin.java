@@ -4,6 +4,7 @@
  */
 package vista;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.Administrador;
 import servicios.AdministradorServices;
@@ -14,8 +15,9 @@ import servicios.AdministradorServices;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
-    AdministradorServices objAdministradorServices= new AdministradorServices();
-    
+    ArrayList<Administrador> administradores = new ArrayList<>();
+    AdministradorServices objAdministradorServices = new AdministradorServices();
+
     public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -42,7 +44,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Inicio De Sesión");
 
         jLabel2.setText("Usuario:");
@@ -56,6 +58,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +66,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +74,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Administradores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,25 +97,25 @@ public class FrmLogin extends javax.swing.JFrame {
                                     .addComponent(txtContrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
                             .addComponent(btnRegistrar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
+                        .addGap(184, 184, 184)
+                        .addComponent(btnIngresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addComponent(jLabel4))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnIngresar)))
+                                .addComponent(jLabel4)))))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -125,52 +129,64 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(btnIngresar)
                 .addGap(4, 4, 4)
                 .addComponent(btnRegistrar)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkMostrarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMostrarContraseniaActionPerformed
-        if(chkMostrarContrasenia.isSelected()){
-            txtContrasenia.setEchoChar((char)0);
-        }else{
+        if (chkMostrarContrasenia.isSelected()) {
+            txtContrasenia.setEchoChar((char) 0);
+        } else {
             txtContrasenia.setEchoChar(('*'));
         }
     }//GEN-LAST:event_chkMostrarContraseniaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if(!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()){
-            if(!txtUsuario.getText().isEmpty()){
-                if(!txtContrasenia.getText().isEmpty()){
-                    
-                    
-//                System.out.println("consultando un cliente con id 1");
-		Administrador objAdministradorConsultado= objAdministradorServices.consultarAdministradorByInicioSesion(txtUsuario.getText(), txtContrasenia.getText());
-		if(objAdministradorConsultado!=null){
-                    JOptionPane.showMessageDialog(this, "Bienvenido administrador, Disfrute del programa");
-                    this.dispose();
-                    
-                    FrmPaginaPrincipal frmPaginaPrincipal = new FrmPaginaPrincipal(objAdministradorConsultado);
-                    frmPaginaPrincipal.setVisible(true);
-                    
-                }else{
-                    JOptionPane.showMessageDialog(this, "No se encontro un admiinistrador con el usuario y contrasenia ingresados");
-                }
-                           
-                }else{
+        if (!txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
+            if (!txtUsuario.getText().isEmpty()) {
+                if (!txtContrasenia.getText().isEmpty()) {
+
+                    Boolean banLogin = false;
+                    //Validar si hay un administrador con ese login y contrasenia
+                    administradores = objAdministradorServices.listarAdministradores();
+                    for (Administrador listaAdmins : administradores) {
+                        if ((listaAdmins.getLogin().equals(txtUsuario.getText())) && (listaAdmins.getContrasenia().equals(txtContrasenia.getText()))) {
+                            banLogin = true;
+                            break;
+                        }
+                    }
+
+                    if (banLogin) {
+                        Administrador objAdministradorConsultado = objAdministradorServices.consultarAdministradorByInicioSesion(txtUsuario.getText(), txtContrasenia.getText());
+                        if (objAdministradorConsultado != null) {
+                            JOptionPane.showMessageDialog(this, "Bienvenido administrador, Disfrute del programa");
+                            this.dispose();
+
+                            FrmPaginaPrincipal frmPaginaPrincipal = new FrmPaginaPrincipal(objAdministradorConsultado);
+                            frmPaginaPrincipal.setVisible(true);
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se encontro un administrador con el usuario y contrasenia ingresados");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se encontro un administrador con el usuario y contrasenia ingresados");
+                    }
+
+                } else {
                     JOptionPane.showMessageDialog(this, "Falta Ingresar contrasenia");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Falta Ingresar usuario");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Falta Ingresar usuario y contraseña");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        FrmRegistrarAdministrador frmRegistrarAdministrador= new FrmRegistrarAdministrador(this, true);
+        FrmRegistrarAdministrador frmRegistrarAdministrador = new FrmRegistrarAdministrador(this, true);
         frmRegistrarAdministrador.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

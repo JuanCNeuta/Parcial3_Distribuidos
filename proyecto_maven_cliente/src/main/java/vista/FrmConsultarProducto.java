@@ -4,6 +4,7 @@
  */
 package vista;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.Producto;
 import servicios.ClienteServices;
@@ -17,6 +18,7 @@ public class FrmConsultarProducto extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmConsultarProducto
      */
+    ArrayList<Producto> productos = new ArrayList<>();
     ClienteServices objClienteServices = new ClienteServices();
 
     public FrmConsultarProducto() {
@@ -150,17 +152,34 @@ public class FrmConsultarProducto extends javax.swing.JInternalFrame {
         if (!txtNombreProducto.getText().isEmpty()) {
 
             Producto objProducto = new Producto();
-            objProducto = objClienteServices.consultarProducto(txtNombreProducto.getText());
+            Boolean banNombre = false;
 
-            if (objProducto != null) {
-                JOptionPane.showMessageDialog(this, "Producto " + objProducto.getNombre() + " Encontrado");
-                txtCodigo.setText(String.valueOf(objProducto.getCodigo()));
-                txtNombre.setText(objProducto.getNombre());
-                txtEstado.setText(objProducto.getEstado());
-                txtValor.setText("$ "+String.valueOf(objProducto.getValor()));
-                
+            //Validar si hay un producto con esa id
+            productos = objClienteServices.listarProductos();
+            for (Producto listaDeProduct : productos) {
+                if (listaDeProduct.getNombre().equals(txtNombreProducto.getText())) {
+                    banNombre = true;
+                    break;
+                }
+            }
+
+            if (banNombre) {
+                objProducto = objClienteServices.consultarProducto(txtNombreProducto.getText());
+
+                if (objProducto != null) {
+                    JOptionPane.showMessageDialog(this, "Producto " + objProducto.getNombre() + " Encontrado");
+                    txtCodigo.setText(String.valueOf(objProducto.getCodigo()));
+                    txtNombre.setText(objProducto.getNombre());
+                    txtEstado.setText(objProducto.getEstado());
+                    txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "NO SE ENCOTRO el Producto " + txtNombreProducto.getText());
+                    limpiarCamposFormulario();
+                }
             } else {
-                JOptionPane.showMessageDialog(this,"NO SE ENCOTRO el Producto " + txtNombreProducto.getText());
+                JOptionPane.showMessageDialog(this, "NO SE ENCOTRO el Producto " + txtNombreProducto.getText());
+                limpiarCamposFormulario();
             }
 
         } else {

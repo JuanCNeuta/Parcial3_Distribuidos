@@ -44,14 +44,14 @@ public class ClienteServices {
         return objCliente;
     }
 
-    public List<Cliente> listarClientes() {
-        List<Cliente> listaClientes = null;
+    public ArrayList<Cliente> listarClientes() {
+        ArrayList<Cliente> listaClientes = null;
 
         WebTarget target = this.objClientePeticiones.target(this.endPoint);
 
         Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
 
-        listaClientes = objPeticion.get(new GenericType<List<Cliente>>() {
+        listaClientes = objPeticion.get(new GenericType<ArrayList<Cliente>>() {
         });
 
         return listaClientes;

@@ -4,6 +4,7 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
 import models.Cliente;
 
 /**
@@ -37,16 +38,19 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         jbListarUnProducto = new javax.swing.JButton();
         jbConsultarSubasta = new javax.swing.JButton();
         jbListarTodosProductos = new javax.swing.JButton();
+        jbCerrarPrograma = new javax.swing.JButton();
+        jbCerrarSesion = new javax.swing.JButton();
         jdpPrincipal = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Bienvenido(a):");
 
-        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblUsuario.setText("Sin usuario");
 
+        jbListarUnProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbListarUnProducto.setText("Consultar un producto ");
         jbListarUnProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +58,7 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbConsultarSubasta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbConsultarSubasta.setText("Consultar y Ofrecer en Subasta");
         jbConsultarSubasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,10 +66,28 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbListarTodosProductos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbListarTodosProductos.setText("Consultar todos los productos");
         jbListarTodosProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbListarTodosProductosActionPerformed(evt);
+            }
+        });
+
+        jbCerrarPrograma.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jbCerrarPrograma.setForeground(new java.awt.Color(255, 0, 0));
+        jbCerrarPrograma.setText("Cerrar Programa");
+        jbCerrarPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCerrarProgramaActionPerformed(evt);
+            }
+        });
+
+        jbCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbCerrarSesion.setText("Cerrar Sesión");
+        jbCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -73,41 +96,52 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblUsuario)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbListarUnProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbListarTodosProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbListarTodosProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jbCerrarPrograma))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(lblUsuario))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jbCerrarSesion)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUsuario)
-                .addGap(40, 40, 40)
+                .addGap(37, 37, 37)
                 .addComponent(jbListarTodosProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbListarUnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbConsultarSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbCerrarSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbCerrarPrograma)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
         jdpPrincipalLayout.setHorizontalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 656, Short.MAX_VALUE)
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +201,17 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
         verListarProductos.show();
     }//GEN-LAST:event_jbListarTodosProductosActionPerformed
 
+    private void jbCerrarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarProgramaActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_jbCerrarProgramaActionPerformed
+
+    private void jbCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarSesionActionPerformed
+        JOptionPane.showMessageDialog(this, "Haz Cerrado Sesión, Vuelve Pronto...");
+        this.dispose();
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
+    }//GEN-LAST:event_jbCerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,6 +250,8 @@ public class FrmPaginaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbCerrarPrograma;
+    private javax.swing.JButton jbCerrarSesion;
     private javax.swing.JButton jbConsultarSubasta;
     private javax.swing.JButton jbListarTodosProductos;
     private javax.swing.JButton jbListarUnProducto;

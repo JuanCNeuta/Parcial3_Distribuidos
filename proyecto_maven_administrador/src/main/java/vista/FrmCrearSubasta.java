@@ -168,7 +168,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         llenarListadoProductos();
         llenarTablaProductos();
-        
+
         if (!txtCodigo.getText().isEmpty()) {
             Producto producto = new Producto();
 
@@ -187,7 +187,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             //Validar si hay otro producto en subasta
             productos = objProductoServices.listarTodosProductos();
             for (Producto listaDeProduct : productos) {
-                if (listaDeProduct.getCodigo() == Integer.valueOf(txtCodigo.getText())) {
+                if (listaDeProduct.getEstado().equals("En subasta")) {
                     banSubasta = true;
                     break;
                 }
@@ -197,7 +197,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                 producto = objProductoServices.consultarProductoId(Integer.valueOf(txtCodigo.getText()));
 
                 if (!producto.getEstado().equalsIgnoreCase("En subasta")) {
-                    
+
                     if (banSubasta) {
                         JOptionPane.showMessageDialog(this, "Ya existe una subasta, solo puede haber una a la vez, intente cerrando la subasta actual");
                     } else {
@@ -205,6 +205,8 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                                 "En subasta", producto);
                         if (objProductoActualizado != null) {
                             JOptionPane.showMessageDialog(this, "La subasta se ha creado correctamente");
+                            llenarListadoProductos();
+                            llenarTablaProductos();
                         } else {
                             JOptionPane.showMessageDialog(this, "Problemas el crear la subasta, intente nuevamente");
                         }
@@ -225,8 +227,6 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void llenarTablaProductos() {
-        JButton btnSubastar = new JButton("Subastar");
-
         modelo = (DefaultTableModel) jtableProductos.getModel();
         int filas = modelo.getRowCount();
 

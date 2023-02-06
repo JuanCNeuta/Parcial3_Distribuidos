@@ -4,6 +4,7 @@
  */
 package vista;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.Producto;
 import servicios.ClienteServices;
@@ -17,24 +18,14 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmConsultarSubasta
      */
+    ArrayList<Producto> productos = new ArrayList<>();
     ClienteServices objClienteServices = new ClienteServices();
     Producto objProducto = new Producto();
+    Thread hilo = new Thread();
 
     public FrmConsultarSubasta() {
         initComponents();
 
-        objProducto = objClienteServices.consultarProductoEnSubasta();
-
-        if (objProducto != null) {
-            JOptionPane.showMessageDialog(null, "Producto " + objProducto.getNombre() + " Encontrado");
-            txtCodigo.setText(String.valueOf(objProducto.getCodigo()));
-            txtNombre.setText(objProducto.getNombre());
-            txtEstado.setText(objProducto.getEstado());
-            txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
-
-        } else {
-            JOptionPane.showMessageDialog(null, "NO HAY PRODUCTO EN SUBASTA");
-        }
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -46,8 +37,32 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
                         Thread.sleep(4000);
 
                         Producto objProducto = new Producto();
-                        objProducto = objClienteServices.consultarProductoEnSubasta();
-                        txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
+                        
+                        Boolean banEstado = false;
+                        //Validar si hay un producto en subasta
+                        productos = objClienteServices.listarProductos();
+                        for (Producto listaDeProduct : productos) {
+                            if (listaDeProduct.getEstado().equals("En subasta")) {
+                                banEstado = true;
+                                break;
+                            }
+                        }
+
+                        if (banEstado) {
+                            objProducto = objClienteServices.consultarProductoEnSubasta();
+
+                            if (objProducto != null) {
+                                txtCodigo.setText(String.valueOf(objProducto.getCodigo()));
+                                txtNombre.setText(objProducto.getNombre());
+                                txtEstado.setText(objProducto.getEstado());
+                                txtValor.setText("$ " + String.valueOf(objProducto.getValor()));
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "NO HAY PRODUCTO EN SUBASTA ACTUALMENTE");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "NO HAY PRODUCTO EN SUBASTA ACTUALMENTE");
+                        }
 
                         System.out.println("Me imprimo cada 4 segundo");
 
@@ -59,7 +74,7 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
         };
 
         // Creamos un hilo y le pasamos el runnable
-        Thread hilo = new Thread(runnable);
+        hilo = new Thread(runnable);
         hilo.start();
 
         // Y aquí podemos hacer cualquier cosa, en el hilo principal del programa
@@ -97,6 +112,28 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Producto en Subasta");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
+            }
+        });
 
         txtCodigo.setEditable(false);
 
@@ -225,29 +262,52 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
 
     private void jbHacerOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHacerOfertaActionPerformed
         if (!txtValorOferta.getText().isEmpty()) {
-            int valorOfert = Integer.parseInt(txtValorOferta.getText());
 
-            Producto objProductoNew = new Producto();
-            if (valorOfert > objProducto.getValor()) {
-                objProductoNew = objClienteServices.hacerOferta(valorOfert, objProducto);
-                if (objProductoNew != null) {
-                    JOptionPane.showMessageDialog(this, "OFERTA ACEPTADA");
-                    txtCodigo.setText(String.valueOf(objProductoNew.getCodigo()));
-                    txtNombre.setText(objProductoNew.getNombre());
-                    txtEstado.setText(objProductoNew.getEstado());
-                    txtValor.setText("$ " + String.valueOf(objProductoNew.getValor()));
+            Boolean banEstado = false;
+            //Validar si hay un producto con esa id
+            productos = objClienteServices.listarProductos();
+            for (Producto listaDeProduct : productos) {
+                if (listaDeProduct.getEstado().equals("En subasta")) {
+                    banEstado = true;
+                    break;
+                }
+            }
 
+            if (banEstado) {
+                int valorOfert = Integer.parseInt(txtValorOferta.getText());
+
+                Producto objProductoNew = new Producto();
+                if (valorOfert > objProducto.getValor()) {
+                    objProductoNew = objClienteServices.hacerOferta(valorOfert, objProducto);
+                    if (objProductoNew != null) {
+                        JOptionPane.showMessageDialog(this, "OFERTA ACEPTADA");
+                        txtCodigo.setText(String.valueOf(objProductoNew.getCodigo()));
+                        txtNombre.setText(objProductoNew.getNombre());
+                        txtEstado.setText(objProductoNew.getEstado());
+                        txtValor.setText("$ " + String.valueOf(objProductoNew.getValor()));
+                        txtValorOferta.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "NO SE ENCOTRO el Producto " + txtValorOferta.getText());
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "NO SE ENCOTRO el Producto " + txtValorOferta.getText());
+                    JOptionPane.showMessageDialog(this, "El valor de la oferta es inferior al valor actual");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "El valor de la oferta es inferior al valor actual");
+                JOptionPane.showMessageDialog(this, "NO SE ENCOTRO el Producto " + txtValorOferta.getText());
             }
 
         } else {
             JOptionPane.showMessageDialog(this, "Complete los campos para poder hacer el registro");
         }
     }//GEN-LAST:event_jbHacerOfertaActionPerformed
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+       hilo.stop();
+    }//GEN-LAST:event_formInternalFrameClosed
+
+    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+
+    }//GEN-LAST:event_formComponentHidden
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,6 +4,7 @@
  */
 package servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -42,14 +43,14 @@ public class AdministradorServices {
         return objAdministrador;
     }
 
-    public List<Administrador> listarAdministradores() {
-        List<Administrador> listaAdministradores = null;
+    public ArrayList<Administrador> listarAdministradores() {
+        ArrayList<Administrador> listaAdministradores = null;
 
         WebTarget target = this.objClientePeticiones.target(this.endPoint);
 
         Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
 
-        listaAdministradores = objPeticion.get(new GenericType<List<Administrador>>() {
+        listaAdministradores = objPeticion.get(new GenericType<ArrayList<Administrador>>() {
         });
 
         return listaAdministradores;

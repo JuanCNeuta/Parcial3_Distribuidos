@@ -128,9 +128,9 @@ public class ProductoRepository {
 		this.listaDeProductos.add(objProducto1);
 		ProductoEntity objProducto2 = new ProductoEntity(2, "Espejo", "Vendido", 120000);
 		this.listaDeProductos.add(objProducto2);
-		ProductoEntity objProducto3 = new ProductoEntity(3, "Silla", "En oferta", 600000);
+		ProductoEntity objProducto3 = new ProductoEntity(3, "Silla", "En subasta", 600000);
 		this.listaDeProductos.add(objProducto3);
-		ProductoEntity objProducto = new ProductoEntity(4, "Tv 50 pulg", "En subasta", 1800000);
+		ProductoEntity objProducto = new ProductoEntity(4, "Tv 50 pulg", "En oferta", 1800000);
 		this.listaDeProductos.add(objProducto);
 	}
 }
