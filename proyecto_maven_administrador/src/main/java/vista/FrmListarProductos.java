@@ -5,11 +5,7 @@
 package vista;
 
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import models.Administrador;
 import models.Producto;
 import servicios.ProductoServices;
 
@@ -31,6 +27,7 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         initComponents();
         llenarListadoProductos();
         llenarTablaProductos();
+
     }
 
     /**
@@ -45,6 +42,8 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -80,6 +79,15 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Listado de productos ofertados");
 
+        jLabel2.setText("ACTUALIZAR LISTADO");
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,8 +97,16 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(105, 105, 105))
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(btnActualizar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(jLabel2)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,19 +115,28 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnActualizar)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        llenarListadoProductos();
+        llenarTablaProductos();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
     private void llenarTablaProductos() {
 
         modelo = (DefaultTableModel) jtableProductos.getModel();
-        int filas= modelo.getRowCount();
-        
-        for(int i = 0; i < filas; i++){
+        int filas = modelo.getRowCount();
+
+        for (int i = 0; i < filas; i++) {
             modelo.removeRow(0);
         }
 
@@ -132,7 +157,9 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtableProductos;
     // End of variables declaration//GEN-END:variables

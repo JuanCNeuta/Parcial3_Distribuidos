@@ -62,7 +62,6 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
 
         jLabel6.setText("Repetir Contraseña:");
 
-        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,55 +126,121 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
                     .addComponent(txtRepetirContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty()
-                && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()
-                && !txtRepetirContrasenia.getText().isEmpty() && txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
-            Boolean bandera = false;
 
-            if ((txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50)  || (txtApellidos.getText().length()>5 && txtApellidos.getText().length()<50)) {
-                bandera=true;
-            }else{
-                bandera=false;
-                JOptionPane.showMessageDialog(this, "Los nombre y apellidos deben ser mayores a 5 letras y menores a 50 letras");
-                txtApellidos.setText("");
-                txtNombres.setText("");
-            }
-            
-            if ((txtUsuario.getText().length() > 10 && txtUsuario.getText().length() < 20)  || (txtContrasenia.getText().length()>10 && txtContrasenia.getText().length()<20) || 
-                    (txtRepetirContrasenia.getText().length() > 10 && txtRepetirContrasenia.getText().length() < 20)  || (txtRepetirContrasenia.getText().length()>10 && txtRepetirContrasenia.getText().length()<20)) {
-                bandera=true;
-            }else{
-                bandera=false;
-                JOptionPane.showMessageDialog(this, "El login y contraseña deben ser mayores a 10 letras y menores a 20 letras");
-                txtUsuario.setText("");
-                txtContrasenia.setText("");
-            }
-           
-            
-            if(bandera){
-                Administrador administrador = new Administrador(txtNombres.getText(), txtApellidos.getText(),
-                        txtUsuario.getText(), txtContrasenia.getText());
+        Boolean bandera = false;
 
-                Administrador objAdministradorRegistrado = objAdministradorServices.registrarAdministrador(administrador);
+        if (!txtNombres.getText().isEmpty()){
 
-                if (objAdministradorRegistrado != null) {
-                    JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión");
-                    limpiarCamposFormulario();
+            if (txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50) {
+
+                bandera = true;
+
+                if (!txtApellidos.getText().isEmpty()) {
+
+                    if (txtApellidos.getText().length() > 5 && txtApellidos.getText().length() < 50) {
+
+                        bandera = true;
+
+                        if (!txtUsuario.getText().isEmpty()) {
+
+                            if (txtUsuario.getText().length() > 10 && txtUsuario.getText().length() < 20) {
+
+                                bandera = true;
+
+                                if (!txtContrasenia.getText().isEmpty()) {
+
+                                    if (txtContrasenia.getText().length() > 10 && txtContrasenia.getText().length() < 20) {
+                                        
+                                        bandera = true;
+
+                                        if (!txtRepetirContrasenia.getText().isEmpty()) {
+
+                                            if (txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
+
+
+                                                if (bandera) {
+                                                    Administrador administrador = new Administrador(txtNombres.getText(), txtApellidos.getText(),
+                                                            txtUsuario.getText(), txtContrasenia.getText());
+
+                                                    Administrador objAdministradorRegistrado = objAdministradorServices.registrarAdministrador(administrador);
+
+                                                    if (objAdministradorRegistrado != null) {
+                                                        JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión");
+                                                        this.dispose();
+                                                        limpiarCamposFormulario();
+                              
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                                                    }
+                                                }
+
+                                            } else {
+                                                JOptionPane.showMessageDialog(this, "Las contraseñas no son iguales, intente nuevamente.");
+                                                txtRepetirContrasenia.requestFocus();
+                                            }
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(this, "Ingrese la contraseña para comparar.");
+                                            txtRepetirContrasenia.requestFocus();
+                                        }
+                                    } else {
+                                        bandera = false;
+                                        JOptionPane.showMessageDialog(this, "La contraseña debe ser mayor a 10 letras y menor a 20 letras");
+                                        txtContrasenia.setText("");
+                                        txtContrasenia.requestFocus();
+                                    }
+
+                                } else {S
+                                    JOptionPane.showMessageDialog(this, "Ingrese contraseña.");
+                                    txtContrasenia.requestFocus();
+                                }
+
+                            } else {
+                                bandera = false;
+                                JOptionPane.showMessageDialog(this, "El usuario debe ser mayor a 10 letras y menor a 20 letras");
+                                txtUsuario.setText("");
+                                txtUsuario.requestFocus();
+                               
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Ingrese usuario.");
+                            txtUsuario.requestFocus();
+                        }
+
+                    } else {
+                        bandera = false;
+                        JOptionPane.showMessageDialog(this, "Los apellidos deben ser mayores a 5 letras y menores a 50 letras");
+                        txtApellidos.setText("");
+                        txtApellidos.requestFocus();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                    JOptionPane.showMessageDialog(this, "Ingrese apellido(s).");
+                    txtApellidos.requestFocus();
                 }
+
+            } else {
+                bandera = false;
+                JOptionPane.showMessageDialog(this, "Los nombres deben ser mayores a 5 letras y menores a 50 letras");
+                txtNombres.setText("");
+                txtNombres.requestFocus();
+                
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Complete los campos para poder hacer el registro");
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre(s).");
+            txtNombres.requestFocus();
         }
+
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**

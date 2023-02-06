@@ -45,7 +45,7 @@ public class ProductoServices {
         return listaProductos;
     }
     
-     //Listar Productos todos
+    //Listar todos los productos
     public ArrayList<Producto> listarTodosProductos() {
         ArrayList<Producto> listaProductos = null;
 
@@ -86,6 +86,20 @@ public class ProductoServices {
 
         return objProducto;
     }
+    
+    //Consultar producto en subasta
+    
+     public Producto consultarProductoEnSubasta(){
+         Producto objProducto = null;
+
+        WebTarget target = this.objClientePeticiones.target("http://localhost:5020/api/cliente/productoEnSubasta");
+        
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        objProducto = objPeticion.get(Producto.class);
+
+        return objProducto;
+    }
 
     //Actualizar estado producto
     public Producto actualizarProductoSubasta(Integer codigo,String estado,Producto objProductoActualizar) {
@@ -101,5 +115,6 @@ public class ProductoServices {
 
         return objProducto;
     }
+    
 
 }

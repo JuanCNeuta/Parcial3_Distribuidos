@@ -44,7 +44,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Inicio De Sesión");
 
         jLabel2.setText("Usuario:");
@@ -58,7 +58,6 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +65,6 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +72,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Administradores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,25 +95,25 @@ public class FrmLogin extends javax.swing.JFrame {
                                     .addComponent(txtContrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
                             .addComponent(btnRegistrar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnIngresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
+                        .addGap(138, 138, 138)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addComponent(jLabel4)))))
+                                .addComponent(jLabel4))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(btnIngresar)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -129,7 +127,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(btnIngresar)
                 .addGap(4, 4, 4)
                 .addComponent(btnRegistrar)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,7 +148,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
                     Boolean banLogin = false;
                     //Validar si hay un administrador con ese login y contrasenia
-                    administradores = objAdministradorServices.listarAdministradores();
+                    administradores = (ArrayList<Administrador>) objAdministradorServices.listarAdministradores();
                     for (Administrador listaAdmins : administradores) {
                         if ((listaAdmins.getLogin().equals(txtUsuario.getText())) && (listaAdmins.getContrasenia().equals(txtContrasenia.getText()))) {
                             banLogin = true;
@@ -158,7 +156,8 @@ public class FrmLogin extends javax.swing.JFrame {
                         }
                     }
 
-                    if (banLogin) {
+                    
+                   if (banLogin) {
                         Administrador objAdministradorConsultado = objAdministradorServices.consultarAdministradorByInicioSesion(txtUsuario.getText(), txtContrasenia.getText());
                         if (objAdministradorConsultado != null) {
                             JOptionPane.showMessageDialog(this, "Bienvenido administrador, Disfrute del programa");
@@ -176,9 +175,11 @@ public class FrmLogin extends javax.swing.JFrame {
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Falta Ingresar contrasenia");
+                    txtContrasenia.requestFocus();
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Falta Ingresar usuario");
+                txtUsuario.requestFocus();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Falta Ingresar usuario y contraseña");

@@ -5,12 +5,9 @@
 package vista;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import models.Administrador;
 import models.Producto;
 import servicios.ProductoServices;
 
@@ -52,11 +49,12 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Gestión Subasta");
 
         jtableProductos = new javax.swing.JTable(){
@@ -97,13 +95,27 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Digite el codigo del producto que desea realizar gestión");
 
-        btnCerrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrar.setText("CERRAR Subasta");
+        btnCerrar.setText("Cerrar Subasta");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
-        btnCrear.setText("CREAR Subasta");
+        btnCrear.setText("Crear Subasta");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Actualizar Listado:");
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -114,14 +126,8 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
                         .addComponent(jLabel2))
@@ -129,12 +135,23 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                         .addGap(87, 87, 87)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
+                        .addGap(225, 225, 225)
                         .addComponent(jLabel1)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,32 +159,31 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCrear)
                             .addComponent(jLabel3)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 51, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCerrar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(btnActualizar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        llenarListadoProductos();
-        llenarTablaProductos();
+
 
         if (!txtCodigo.getText().isEmpty()) {
             Producto producto = new Producto();
@@ -224,9 +240,84 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Ingrese un codigo para poder empezar la subasta");
         }
+
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+
+        if (!txtCodigo.getText().isEmpty()) {
+            Producto producto = new Producto();
+
+            Boolean banCodigo = false;
+            Boolean banSubasta = false;
+
+            //Validar si hay un producto con esa id
+            productos = objProductoServices.listarTodosProductos();
+            for (Producto listaDeProduct : productos) {
+                if (listaDeProduct.getCodigo() == Integer.valueOf(txtCodigo.getText())) {
+                    banCodigo = true;
+                    break;
+                }
+            }
+
+            //Validar si hay otro producto en subasta
+            productos = objProductoServices.listarTodosProductos();
+            for (Producto listaDeProduct : productos) {
+                if (listaDeProduct.getEstado().equals("En subasta")) {
+                    banSubasta = true;
+                    break;
+                }
+            }
+
+            if (!banSubasta) {
+                JOptionPane.showMessageDialog(this, "No existen productos subastandose actualmente, no se puede realizar esta accion");
+            } else {
+
+                if (banCodigo) {
+                    
+                    producto = objProductoServices.consultarProductoId(Integer.valueOf(txtCodigo.getText()));
+
+                    if (producto.getEstado().equalsIgnoreCase("En subasta")) {
+
+                        Producto productoSubasta = new Producto();
+                        productoSubasta = objProductoServices.consultarProductoEnSubasta();
+                        Producto objProductoActualizado = objProductoServices.actualizarProductoSubasta(Integer.valueOf(txtCodigo.getText()),
+                                "En oferta", productoSubasta);
+                        if (objProductoActualizado != null) {
+                            JOptionPane.showMessageDialog(this, "La subasta ha sido cerrada correctamente");
+                            llenarListadoProductos();
+                            llenarTablaProductos();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Problemas al cerrar la subasta, intente nuevamente");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El producto no se esta subastando, no se puede realizar esta accion, intente nuevamente");
+                        txtCodigo.setText("");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El codigo ingresado no pertenece a ningun producto, intente nuevamente");
+                    txtCodigo.setText("");
+                    txtCodigo.requestFocus();
+                }
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese un codigo para poder empezar la subasta");
+            txtCodigo.requestFocus();
+        }
+
+
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        llenarListadoProductos();
+        llenarTablaProductos();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
     private void llenarTablaProductos() {
+
         modelo = (DefaultTableModel) jtableProductos.getModel();
         int filas = modelo.getRowCount();
 
@@ -250,12 +341,14 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtableProductos;
     private javax.swing.JTextField txtCodigo;

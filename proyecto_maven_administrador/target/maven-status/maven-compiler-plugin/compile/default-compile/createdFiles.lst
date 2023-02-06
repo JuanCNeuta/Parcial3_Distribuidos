@@ -2,7 +2,6 @@ vista\FrmListarProductos$1.class
 vista\FrmPaginaPrincipal$3.class
 vista\FrmRegistrarAdministrador$1.class
 vista\FrmPaginaPrincipal$5.class
-servicios\ProductoServices$2.class
 vista\Menu.class
 vista\FrmLogin.class
 models\Administrador.class
@@ -30,4 +29,3 @@ vista\FrmRegistrarProducto$1.class
 servicios\AdministradorServices$1.class
 vista\FrmListarProductos$2.class
 models\Producto.class
-vista\FrmCrearSubasta$3.class

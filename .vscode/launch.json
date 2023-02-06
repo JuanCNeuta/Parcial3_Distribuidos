@@ -23,6 +23,16 @@
             "projectName": "proyecto_api_rest_inicio_sesion",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApiRestProductoApplication<proyecto_api_rest_producto>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.distribuidos.proyecto_api_rest_producto.ProyectoApiRestProductoApplication",
+            "projectName": "proyecto_api_rest_producto",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
