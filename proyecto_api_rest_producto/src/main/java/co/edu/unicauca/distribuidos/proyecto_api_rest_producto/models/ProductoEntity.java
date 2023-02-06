@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor
 public class ProductoEntity {
+
     private Integer codigo;		
 	private String nombre;	
 	private String estado;	

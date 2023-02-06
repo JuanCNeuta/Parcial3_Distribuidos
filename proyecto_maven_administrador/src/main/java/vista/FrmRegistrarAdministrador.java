@@ -137,17 +137,40 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
         if (!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty()
                 && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()
                 && !txtRepetirContrasenia.getText().isEmpty() && txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
+            Boolean bandera = false;
 
-            Administrador administrador = new Administrador(txtNombres.getText(), txtApellidos.getText(),
-                    txtUsuario.getText(), txtContrasenia.getText());
+            if ((txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50)  || (txtApellidos.getText().length()>5 && txtApellidos.getText().length()<50)) {
+                bandera=true;
+            }else{
+                bandera=false;
+                JOptionPane.showMessageDialog(this, "Los nombre y apellidos deben ser mayores a 5 letras y menores a 50 letras");
+                txtApellidos.setText("");
+                txtNombres.setText("");
+            }
+            
+            if ((txtUsuario.getText().length() > 10 && txtUsuario.getText().length() < 20)  || (txtContrasenia.getText().length()>10 && txtContrasenia.getText().length()<20) || 
+                    (txtRepetirContrasenia.getText().length() > 10 && txtRepetirContrasenia.getText().length() < 20)  || (txtRepetirContrasenia.getText().length()>10 && txtRepetirContrasenia.getText().length()<20)) {
+                bandera=true;
+            }else{
+                bandera=false;
+                JOptionPane.showMessageDialog(this, "El login y contraseña deben ser mayores a 10 letras y menores a 20 letras");
+                txtUsuario.setText("");
+                txtContrasenia.setText("");
+            }
+           
+            
+            if(bandera){
+                Administrador administrador = new Administrador(txtNombres.getText(), txtApellidos.getText(),
+                        txtUsuario.getText(), txtContrasenia.getText());
 
-            Administrador objAdministradorRegistrado = objAdministradorServices.registrarAdministrador(administrador);
+                Administrador objAdministradorRegistrado = objAdministradorServices.registrarAdministrador(administrador);
 
-            if (objAdministradorRegistrado != null) {
-                JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión");
-                limpiarCamposFormulario();
-            } else {
-                JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                if (objAdministradorRegistrado != null) {
+                    JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión");
+                    limpiarCamposFormulario();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                }
             }
 
         } else {

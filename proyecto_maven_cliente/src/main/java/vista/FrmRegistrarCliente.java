@@ -7,6 +7,8 @@ package vista;
 import javax.swing.JOptionPane;
 import models.Cliente;
 import servicios.ClienteServices;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -166,26 +168,74 @@ public class FrmRegistrarCliente extends javax.swing.JDialog {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty()
-                && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty() 
+                && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()
                 && !txtCorreo.getText().isEmpty() && !txtTelefono.getText().isEmpty()
                 && !txtRepetirContrasenia.getText().isEmpty() && txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
 
-            Cliente cliente = new Cliente(txtNombres.getText(), txtApellidos.getText(),
-                    txtCorreo.getText(), txtTelefono.getText(),txtUsuario.getText(),
-                    txtContrasenia.getText());
+            Boolean bandera = false;
+            
+            // Patrón para validar el email
+            Pattern pattern = Pattern
+                    .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+            Matcher mather = pattern.matcher(txtCorreo.getText());
+            
+            char ch = txtTelefono.getText().charAt(0);
 
-            Cliente objClienteRegistrado = objClienteServices.registrarCliente(cliente);
-
-            if (objClienteRegistrado != null) {
-                JOptionPane.showMessageDialog(this, "Cliente Registrado Correctamente, Ya puedes iniciar sesión");
-                limpiarCamposFormulario();
+            if ((txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50) || (txtApellidos.getText().length() > 5 && txtApellidos.getText().length() < 50)) {
+                bandera = true;
             } else {
-                JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                bandera = false;
+                JOptionPane.showMessageDialog(this, "Los nombre y apellidos deben ser mayores a 5 letras y menores a 50 letras");
+                txtApellidos.setText("");
+                txtNombres.setText("");
             }
 
+            if ((txtUsuario.getText().length() > 10 && txtUsuario.getText().length() < 20) || (txtContrasenia.getText().length() > 10 && txtContrasenia.getText().length() < 20)
+                    || (txtRepetirContrasenia.getText().length() > 10 && txtRepetirContrasenia.getText().length() < 20) || (txtRepetirContrasenia.getText().length() > 10 && txtRepetirContrasenia.getText().length() < 20)) {
+                bandera = true;
+            } else {
+                bandera = false;
+                JOptionPane.showMessageDialog(this, "El login y contraseña deben ser mayores a 10 letras y menores a 20 letras");
+                txtUsuario.setText("");
+                txtContrasenia.setText("");
+                txtRepetirContrasenia.setText("");
+            }
+            
+            if (mather.find()) {
+                bandera = true;
+            } else {
+                bandera = false;
+                JOptionPane.showMessageDialog(this, "El Correo digitado no sigue el formato aceptado");
+                txtCorreo.setText("");
+            }
+            
+            if (ch=='5' && txtTelefono.getText().length()==10) {
+                bandera = true;
+            } else {
+                bandera = false;
+                JOptionPane.showMessageDialog(this, "El Telefono debe ser de 10 digitos y empezar con 5");
+                txtTelefono.setText("");
+            }
+
+            if (bandera) {
+                Cliente cliente = new Cliente(txtNombres.getText(), txtApellidos.getText(),
+                        txtCorreo.getText(), txtTelefono.getText(), txtUsuario.getText(),
+                        txtContrasenia.getText());
+
+                Cliente objClienteRegistrado = objClienteServices.registrarCliente(cliente);
+
+                if (objClienteRegistrado != null) {
+                    JOptionPane.showMessageDialog(this, "Cliente Registrado Correctamente, Ya puedes iniciar sesión");
+                    limpiarCamposFormulario();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Complete los campos para poder hacer el registro");
         }
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**

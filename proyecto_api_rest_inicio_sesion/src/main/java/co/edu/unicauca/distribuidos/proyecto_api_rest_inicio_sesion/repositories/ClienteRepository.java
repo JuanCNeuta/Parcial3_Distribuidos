@@ -55,7 +55,7 @@ public class ClienteRepository {
 
     private void cargarClientes()
 	{
-        ClienteEntity objCliente1= new ClienteEntity("Juan","Salazar","jsalazar@gmail.com","3213086655","juan","juan");
+        ClienteEntity objCliente1= new ClienteEntity("Juan Carlos","Salazar","jsalazar@gmail.com","5321308665","juancarlosn","juancarlosn");
         
 		this.listaDeClientes.add(objCliente1);
 	

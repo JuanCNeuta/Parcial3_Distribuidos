@@ -54,7 +54,7 @@ public class AdministradorRepository {
 
     private void cargarAdministrador()
 	{
-        AdministradorEntity objAdministrador1= new AdministradorEntity("Administrador", "Primario", "admin", "admin");
+        AdministradorEntity objAdministrador1= new AdministradorEntity("Administrador", "Primario", "administrador", "administrador");
 		this.listaDeAdministradores.add(objAdministrador1);
 	
 	}
