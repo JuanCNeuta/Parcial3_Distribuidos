@@ -291,7 +291,9 @@ public class FrmConsultarSubasta extends javax.swing.JInternalFrame {
             if (banEstado) {
                 int valorOfert = Integer.parseInt(txtValorOferta.getText());
 
+                
                 Producto objProductoNew = new Producto();
+                objProducto = objClienteServices.consultarProductoEnSubasta();
                 if (valorOfert > objProducto.getValor()) {
                     objProductoNew = objClienteServices.hacerOferta(valorOfert, objProducto);
                     if (objProductoNew != null) {
