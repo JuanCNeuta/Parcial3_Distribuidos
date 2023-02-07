@@ -179,73 +179,147 @@ public class FrmRegistrarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty()
-                && !txtUsuario.getText().isEmpty() && !txtContrasenia.getText().isEmpty()
-                && !txtCorreo.getText().isEmpty() && !txtTelefono.getText().isEmpty()
-                && !txtRepetirContrasenia.getText().isEmpty() && txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
+        Boolean bandera = false;
 
-            Boolean bandera = false;
-            
-            // Patrón para validar el email
-            Pattern pattern = Pattern
-                    .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-            Matcher mather = pattern.matcher(txtCorreo.getText());
-            
-            char ch = txtTelefono.getText().charAt(0);
+        // Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(txtCorreo.getText());
 
-            if ((txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50) || (txtApellidos.getText().length() > 5 && txtApellidos.getText().length() < 50)) {
+        char ch = txtTelefono.getText().charAt(0);
+
+        if (!txtNombres.getText().isEmpty()) {
+
+            if (txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50) {
+
                 bandera = true;
-            } else {
-                bandera = false;
-                JOptionPane.showMessageDialog(this, "Los nombre y apellidos deben ser mayores a 5 letras y menores a 50 letras");
-                txtApellidos.setText("");
-                txtNombres.setText("");
-            }
 
-            if ((txtUsuario.getText().length() > 10 && txtUsuario.getText().length() < 20) || (txtContrasenia.getText().length() > 10 && txtContrasenia.getText().length() < 20)
-                    || (txtRepetirContrasenia.getText().length() > 10 && txtRepetirContrasenia.getText().length() < 20) || (txtRepetirContrasenia.getText().length() > 10 && txtRepetirContrasenia.getText().length() < 20)) {
-                bandera = true;
-            } else {
-                bandera = false;
-                JOptionPane.showMessageDialog(this, "El login y contraseña deben ser mayores a 10 letras y menores a 20 letras");
-                txtUsuario.setText("");
-                txtContrasenia.setText("");
-                txtRepetirContrasenia.setText("");
-            }
-            
-            if (mather.find()) {
-                bandera = true;
-            } else {
-                bandera = false;
-                JOptionPane.showMessageDialog(this, "El Correo digitado no sigue el formato aceptado");
-                txtCorreo.setText("");
-            }
-            
-            if (ch=='5' && txtTelefono.getText().length()==10) {
-                bandera = true;
-            } else {
-                bandera = false;
-                JOptionPane.showMessageDialog(this, "El Telefono debe ser de 10 digitos y empezar con 5");
-                txtTelefono.setText("");
-            }
+                if (!txtApellidos.getText().isEmpty()) {
 
-            if (bandera) {
-                Cliente cliente = new Cliente(txtNombres.getText(), txtApellidos.getText(),
-                        txtCorreo.getText(), txtTelefono.getText(), txtUsuario.getText(),
-                        txtContrasenia.getText());
+                    if (txtApellidos.getText().length() > 5 && txtApellidos.getText().length() < 50) {
 
-                Cliente objClienteRegistrado = objClienteServices.registrarCliente(cliente);
+                        bandera = true;
 
-                if (objClienteRegistrado != null) {
-                    JOptionPane.showMessageDialog(this, "Cliente Registrado Correctamente, Ya puedes iniciar sesión");
-                    limpiarCamposFormulario();
+                        if (!txtCorreo.getText().isEmpty()) {
+
+                            if (mather.find()) {
+
+                                bandera = true;
+
+                                if (!txtTelefono.getText().isEmpty()) {
+
+                                    if (ch == '5' && txtTelefono.getText().length() == 10) {
+
+                                        bandera = true;
+
+                                        if (!txtUsuario.getText().isEmpty()) {
+
+                                            if (txtUsuario.getText().length() > 10 && txtUsuario.getText().length() < 20) {
+
+                                                bandera = true;
+
+                                                if (!txtContrasenia.getText().isEmpty()) {
+
+                                                    if (txtContrasenia.getText().length() > 10 && txtContrasenia.getText().length() < 20) {
+
+                                                        bandera = true;
+
+                                                        if (!txtRepetirContrasenia.getText().isEmpty()) {
+
+                                                            if (txtRepetirContrasenia.getText().equals(txtContrasenia.getText())) {
+
+                                                                if (bandera) {
+                                                                    Cliente cliente = new Cliente(txtNombres.getText(), txtApellidos.getText(),
+                                                                            txtCorreo.getText(), txtTelefono.getText(), txtUsuario.getText(),
+                                                                            txtContrasenia.getText());
+
+                                                                    Cliente objClienteRegistrado = objClienteServices.registrarCliente(cliente);
+
+                                                                    if (objClienteRegistrado != null) {
+                                                                        JOptionPane.showMessageDialog(this, "Cliente Registrado Correctamente, Ya puedes iniciar sesión");
+                                                                        limpiarCamposFormulario();
+                                                                    } else {
+                                                                        JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                                                                    }
+                                                                }
+
+                                                            } else {
+                                                                JOptionPane.showMessageDialog(this, "Las contraseñas no son iguales, intente nuevamente.");
+                                                                txtRepetirContrasenia.requestFocus();
+                                                            }
+
+                                                        } else {
+                                                            JOptionPane.showMessageDialog(this, "Ingrese la contraseña para comparar.");
+                                                            txtRepetirContrasenia.requestFocus();
+                                                        }
+                                                    } else {
+                                                        bandera = false;
+                                                        JOptionPane.showMessageDialog(this, "La contraseña debe ser mayor a 10 letras y menor a 20 letras.");
+                                                        txtContrasenia.setText("");
+                                                        txtContrasenia.requestFocus();
+                                                    }
+
+                                                } else {
+                                                    JOptionPane.showMessageDialog(this, "Ingrese contraseña.");
+                                                    txtContrasenia.requestFocus();
+                                                }
+
+                                            } else {
+                                                bandera = false;
+                                                JOptionPane.showMessageDialog(this, "El usuario debe ser mayor a 10 letras y menor a 20 letras.");
+                                                txtUsuario.setText("");
+                                                txtUsuario.requestFocus();
+
+                                            }
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(this, "Ingrese usuario.");
+                                            txtUsuario.requestFocus();
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(this, " El Telefono debe ser de 10 digitos y empezar con 5.");
+                                        txtCorreo.setText("");
+                                        txtCorreo.requestFocus();
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Ingrese el Telefono.");
+                                    txtTelefono.requestFocus();
+                                }
+
+                            } else {
+                                JOptionPane.showMessageDialog(this, "El Correo digitado no sigue el formato aceptado");
+                                txtTelefono.setText("");
+                                txtTelefono.requestFocus();
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Ingrese el Correo.");
+                            txtCorreo.requestFocus();
+                        }
+                    } else {
+                        bandera = false;
+                        JOptionPane.showMessageDialog(this, "Los apellidos deben ser mayores a 5 letras y menores a 50 letras.");
+                        txtApellidos.setText("");
+                        txtApellidos.requestFocus();
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                    JOptionPane.showMessageDialog(this, "Ingrese apellido(s).");
+                    txtApellidos.requestFocus();
                 }
+
+            } else {
+                bandera = false;
+                JOptionPane.showMessageDialog(this, "Los nombres deben ser mayores a 5 letras y menores a 50 letras.");
+                txtNombres.setText("");
+                txtNombres.requestFocus();
+
             }
+
         } else {
-            JOptionPane.showMessageDialog(this, "Complete los campos para poder hacer el registro");
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre(s).");
+            txtNombres.requestFocus();
         }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
