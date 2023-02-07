@@ -58,6 +58,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnIngresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +66,8 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setText("Registrar");
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrar.setText("Registrarse");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -100,11 +102,12 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addComponent(jLabel4))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnIngresar)))
+                                .addComponent(jLabel4)))))
                 .addContainerGap(66, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnIngresar)
+                .addGap(183, 183, 183))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,11 +126,11 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(chkMostrarContrasenia)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIngresar)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegistrar)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,29 +163,29 @@ public class FrmLogin extends javax.swing.JFrame {
                    if (banLogin) {
                         Administrador objAdministradorConsultado = objAdministradorServices.consultarAdministradorByInicioSesion(txtUsuario.getText(), txtContrasenia.getText());
                         if (objAdministradorConsultado != null) {
-                            JOptionPane.showMessageDialog(this, "Bienvenido administrador, Disfrute del programa");
+                            JOptionPane.showMessageDialog(this, "Bienvenido administrador, Disfrute del programa.");
                             this.dispose();
 
                             FrmPaginaPrincipal frmPaginaPrincipal = new FrmPaginaPrincipal(objAdministradorConsultado);
                             frmPaginaPrincipal.setVisible(true);
 
                         } else {
-                            JOptionPane.showMessageDialog(this, "No se encontro un administrador con el usuario y contrasenia ingresados");
+                            JOptionPane.showMessageDialog(this, "No se encontro un administrador con el usuario y contrasenia ingresados.");
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se encontro un administrador con el usuario y contrasenia ingresados");
+                        JOptionPane.showMessageDialog(this, "No se encontro un administrador con el usuario y contraseña ingresados.");
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "Falta Ingresar contrasenia");
+                    JOptionPane.showMessageDialog(this, "Falta Ingresar contraseña.");
                     txtContrasenia.requestFocus();
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Falta Ingresar usuario");
+                JOptionPane.showMessageDialog(this, "Falta Ingresar usuario.");
                 txtUsuario.requestFocus();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Falta Ingresar usuario y contraseña");
+            JOptionPane.showMessageDialog(this, "Falta Ingresar usuario y contraseña.");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

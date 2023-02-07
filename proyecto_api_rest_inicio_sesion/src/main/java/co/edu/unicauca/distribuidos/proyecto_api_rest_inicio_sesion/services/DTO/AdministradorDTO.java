@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter @Setter @AllArgsConstructor
 public class AdministradorDTO {
-    
+
     @NotNull(message = "{user.name.empty}")
     @Size(min = 5, max =50, message = "la cantidad de caracteres de los nombres debe estar entre 5 y 50")
     private String nombres;	

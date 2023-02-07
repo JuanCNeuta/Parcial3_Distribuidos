@@ -14,23 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+
 
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
+
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import co.edu.unicauca.distribuidos.proyecto_api_rest_inicio_sesion.services.DTO.AdministradorDTO;
@@ -62,7 +53,7 @@ public class SesionRestController {
 
     //Registrar nuevo administrador
     @PostMapping("/administradores")
-	public AdministradorDTO createA(@Valid @RequestBody AdministradorDTO administrador) {	
+	public AdministradorDTO createA(@RequestBody @Valid AdministradorDTO administrador) {	
 		AdministradorDTO objAdministrador = null;
 		objAdministrador =  sesionService.saveA(administrador);
 		return objAdministrador;
@@ -84,7 +75,7 @@ public class SesionRestController {
 
     //Registrar nuevo cliente
     @PostMapping("/clientes")
-	public ClienteDTO createC(@Valid @RequestBody ClienteDTO cliente) {	
+	public ClienteDTO createC(@RequestBody @Valid ClienteDTO cliente) {	
 		ClienteDTO objCliente = null;
 		objCliente =  sesionService.saveC(cliente);
 		return objCliente;

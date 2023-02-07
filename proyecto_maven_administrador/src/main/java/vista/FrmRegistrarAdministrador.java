@@ -52,16 +52,28 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registro Administrador");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Nombres:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Apellidos");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Usuario:");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Contraseña:");
 
+        txtNombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombresActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Repetir Contraseña:");
 
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,13 +94,13 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRepetirContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRepetirContrasenia, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombres))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +138,7 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
                     .addComponent(txtRepetirContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,7 +148,7 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
 
         Boolean bandera = false;
 
-        if (!txtNombres.getText().isEmpty()){
+        if (!txtNombres.getText().isEmpty()) {
 
             if (txtNombres.getText().length() > 5 && txtNombres.getText().length() < 50) {
 
@@ -172,12 +184,12 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
                                                     Administrador objAdministradorRegistrado = objAdministradorServices.registrarAdministrador(administrador);
 
                                                     if (objAdministradorRegistrado != null) {
-                                                        JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión");
+                                                        JOptionPane.showMessageDialog(this, "Administrador Registrado, Ya puedes iniciar sesión!!!.");
                                                         this.dispose();
                                                         limpiarCamposFormulario();
                               
                                                     } else {
-                                                        JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador");
+                                                        JOptionPane.showMessageDialog(this, "No se ha podido registrar el administrador.");
                                                     }
                                                 }
 
@@ -192,19 +204,19 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
                                         }
                                     } else {
                                         bandera = false;
-                                        JOptionPane.showMessageDialog(this, "La contraseña debe ser mayor a 10 letras y menor a 20 letras");
+                                        JOptionPane.showMessageDialog(this, "La contraseña debe ser mayor a 10 letras y menor a 20 letras.");
                                         txtContrasenia.setText("");
                                         txtContrasenia.requestFocus();
                                     }
 
-                                } else {S
+                                } else {
                                     JOptionPane.showMessageDialog(this, "Ingrese contraseña.");
                                     txtContrasenia.requestFocus();
                                 }
 
                             } else {
                                 bandera = false;
-                                JOptionPane.showMessageDialog(this, "El usuario debe ser mayor a 10 letras y menor a 20 letras");
+                                JOptionPane.showMessageDialog(this, "El usuario debe ser mayor a 10 letras y menor a 20 letras.");
                                 txtUsuario.setText("");
                                 txtUsuario.requestFocus();
                                
@@ -217,7 +229,7 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
 
                     } else {
                         bandera = false;
-                        JOptionPane.showMessageDialog(this, "Los apellidos deben ser mayores a 5 letras y menores a 50 letras");
+                        JOptionPane.showMessageDialog(this, "Los apellidos deben ser mayores a 5 letras y menores a 50 letras.");
                         txtApellidos.setText("");
                         txtApellidos.requestFocus();
                     }
@@ -229,7 +241,7 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
 
             } else {
                 bandera = false;
-                JOptionPane.showMessageDialog(this, "Los nombres deben ser mayores a 5 letras y menores a 50 letras");
+                JOptionPane.showMessageDialog(this, "Los nombres deben ser mayores a 5 letras y menores a 50 letras.");
                 txtNombres.setText("");
                 txtNombres.requestFocus();
                 
@@ -242,6 +254,10 @@ public class FrmRegistrarAdministrador extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombresActionPerformed
 
     /**
      * @param args the command line arguments

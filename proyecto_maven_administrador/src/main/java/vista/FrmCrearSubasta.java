@@ -5,7 +5,6 @@
 package vista;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Producto;
@@ -95,6 +94,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Digite el codigo del producto que desea realizar gestión");
 
+        btnCerrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCerrar.setText("Cerrar Subasta");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +102,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCrear.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCrear.setText("Crear Subasta");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +113,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Actualizar Listado:");
 
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +174,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(btnActualizar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +203,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             }
 
             //Validar si hay otro producto en subasta
-            productos = objProductoServices.listarTodosProductos();
+            //productos = objProductoServices.listarTodosProductos();
             for (Producto listaDeProduct : productos) {
                 if (listaDeProduct.getEstado().equals("En subasta")) {
                     banSubasta = true;
@@ -215,30 +217,33 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                 if (!producto.getEstado().equalsIgnoreCase("En subasta")) {
 
                     if (banSubasta) {
-                        JOptionPane.showMessageDialog(this, "Ya existe una subasta, solo puede haber una a la vez, intente cerrando la subasta actual");
+                        JOptionPane.showMessageDialog(this, "Ya existe una subasta, solo puede haber una a la vez, intente cerrando la subasta actual.");
+                        txtCodigo.setText("");
                     } else {
                         Producto objProductoActualizado = objProductoServices.actualizarProductoSubasta(Integer.valueOf(txtCodigo.getText()),
                                 "En subasta", producto);
                         if (objProductoActualizado != null) {
-                            JOptionPane.showMessageDialog(this, "La subasta se ha creado correctamente");
+                            JOptionPane.showMessageDialog(this, "La subasta se ha creado correctamente.");
                             llenarListadoProductos();
                             llenarTablaProductos();
+                            txtCodigo.setText("");
                         } else {
-                            JOptionPane.showMessageDialog(this, "Problemas el crear la subasta, intente nuevamente");
+                            JOptionPane.showMessageDialog(this, "Problemas el crear la subasta, intente nuevamente.");
+                            txtCodigo.setText("");
                         }
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "El producto ya se esta subastando, intente nuevamente");
+                    JOptionPane.showMessageDialog(this, "El producto ya se esta subastando, intente nuevamente.");
                     txtCodigo.setText("");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "El codigo ingresado no pertenece a ningun producto, intente nuevamente");
+                JOptionPane.showMessageDialog(this, "El codigo ingresado no pertenece a ningun producto, intente nuevamente.");
                 txtCodigo.setText("");
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese un codigo para poder empezar la subasta");
+            JOptionPane.showMessageDialog(this, "Ingrese un codigo para poder empezar la subasta.");
         }
 
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -261,7 +266,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             }
 
             //Validar si hay otro producto en subasta
-            productos = objProductoServices.listarTodosProductos();
+            //productos = objProductoServices.listarTodosProductos();
             for (Producto listaDeProduct : productos) {
                 if (listaDeProduct.getEstado().equals("En subasta")) {
                     banSubasta = true;
@@ -270,7 +275,8 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             }
 
             if (!banSubasta) {
-                JOptionPane.showMessageDialog(this, "No existen productos subastandose actualmente, no se puede realizar esta accion");
+                JOptionPane.showMessageDialog(this, "No existen productos subastandose actualmente, no se puede realizar esta acción.");
+                txtCodigo.setText("");
             } else {
 
                 if (banCodigo) {
@@ -284,19 +290,21 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
                         Producto objProductoActualizado = objProductoServices.actualizarProductoSubasta(Integer.valueOf(txtCodigo.getText()),
                                 "En oferta", productoSubasta);
                         if (objProductoActualizado != null) {
-                            JOptionPane.showMessageDialog(this, "La subasta ha sido cerrada correctamente");
+                            JOptionPane.showMessageDialog(this, "La subasta ha sido cerrada correctamente.");
                             llenarListadoProductos();
                             llenarTablaProductos();
+                            txtCodigo.setText("");
                         } else {
-                            JOptionPane.showMessageDialog(this, "Problemas al cerrar la subasta, intente nuevamente");
+                            JOptionPane.showMessageDialog(this, "Problemas al cerrar la subasta, intente nuevamente.");
+                            txtCodigo.setText("");
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(this, "El producto no se esta subastando, no se puede realizar esta accion, intente nuevamente");
+                        JOptionPane.showMessageDialog(this, "El producto no se esta subastando, no se puede realizar esta acción, intente nuevamente.");
                         txtCodigo.setText("");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "El codigo ingresado no pertenece a ningun producto, intente nuevamente");
+                    JOptionPane.showMessageDialog(this, "El codigo ingresado no pertenece a ningun producto, intente nuevamente.");
                     txtCodigo.setText("");
                     txtCodigo.requestFocus();
                 }
@@ -304,7 +312,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese un codigo para poder empezar la subasta");
+            JOptionPane.showMessageDialog(this, "Ingrese un codigo para iniciar la subasta.");
             txtCodigo.requestFocus();
         }
 
@@ -314,6 +322,7 @@ public class FrmCrearSubasta extends javax.swing.JInternalFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         llenarListadoProductos();
         llenarTablaProductos();
+        JOptionPane.showMessageDialog(this, "Se ha actualizado el listado de productos disponibles.");
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void llenarTablaProductos() {
