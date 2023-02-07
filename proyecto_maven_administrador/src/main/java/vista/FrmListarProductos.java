@@ -48,7 +48,6 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Listado Productos Ofertados");
 
         jtableProductos = new javax.swing.JTable(){
@@ -77,7 +76,7 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         jtableProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtableProductos);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Listado de productos ofertados");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -96,10 +95,6 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(105, 105, 105))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -109,7 +104,10 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
                         .addComponent(btnActualizar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(209, 209, 209)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel1)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

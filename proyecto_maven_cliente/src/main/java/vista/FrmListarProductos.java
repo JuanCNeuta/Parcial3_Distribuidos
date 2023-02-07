@@ -45,7 +45,6 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Consultar todos los productos");
 
         jbActualizarTabla.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -82,7 +81,7 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         jtableProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtableProductos);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Listado de productos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,7 +89,7 @@ public class FrmListarProductos extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(52, 52, 52)
                 .addComponent(jbActualizarTabla)

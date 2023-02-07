@@ -2,7 +2,8 @@ vista\FrmListarProductos$1.class
 vista\FrmPaginaPrincipal$3.class
 vista\FrmRegistrarAdministrador$1.class
 vista\FrmPaginaPrincipal$5.class
-vista\Menu.class
+servicios\ProductoServices$2.class
+vista\FrmCrearSubasta$5.class
 vista\FrmLogin.class
 models\Administrador.class
 servicios\AdministradorServices.class
@@ -10,10 +11,12 @@ vista\FrmLogin$1.class
 vista\FrmCrearSubasta.class
 vista\FrmRegistrarAdministrador$2.class
 vista\FrmCrearSubasta$2.class
+vista\FrmListarProductos$3.class
 vista\FrmLogin$4.class
 vista\FrmPaginaPrincipal$4.class
+vista\FrmCrearSubasta$4.class
+vista\FrmRegistrarAdministrador$3$1.class
 servicios\ProductoServices$1.class
-vista\FrmRegistrarAdministrador$2$1.class
 servicios\ProductoServices.class
 vista\FrmRegistrarProducto.class
 vista\FrmPaginaPrincipal.class
@@ -23,9 +26,11 @@ vista\FrmPaginaPrincipal$6.class
 vista\FrmLogin$2.class
 vista\FrmPaginaPrincipal$1.class
 vista\FrmCrearSubasta$1.class
+vista\FrmRegistrarAdministrador$3.class
 vista\FrmLogin$3.class
 vista\FrmRegistrarAdministrador.class
 vista\FrmRegistrarProducto$1.class
 servicios\AdministradorServices$1.class
 vista\FrmListarProductos$2.class
 models\Producto.class
+vista\FrmCrearSubasta$3.class
